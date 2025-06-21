@@ -4,17 +4,18 @@
   "version": "0.0.0",
   "type": "module",
   "homepage": "https://github.com/jumahans/thewellsofrevival",
-  "home" : "thewellsofrevival",
+  "home": "thewellsofrevival",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy" : "npm run deploy",
-    "deploy" : "gh-pages -d dist"
+    "predeploy": "npm run deploy",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.10",
+    "gh-pages": "^6.3.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.2"
