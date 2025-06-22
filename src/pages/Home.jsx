@@ -8,14 +8,14 @@ function Home(){
     const [selectedGalleryImage, setSelectedGalleryImage] = useState(null);
         
     const heroImages = [
-        "/image/22.jpg",
-        "/image/14.jpg", 
-        "/image/15.jpg",
-        "/image/30.jpg",
-        "/image/28.jpg",
-        "/image/19.jpg",
-        "/image/20.jpg",
-        "/image/27.jpg"
+        "image/22.jpg",
+        "image/14.jpg", 
+        "image/15.jpg",
+        "image/30.jpg",
+        "image/28.jpg",
+        "image/19.jpg",
+        "image/20.jpg",
+        "image/27.jpg"
     ];
 
     const galleryImages = [
@@ -155,7 +155,7 @@ function Home(){
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                                 <video
-                                    className="w-full h-64 object-cover"
+                                    className="w-full h-120 object-cover"
                                     controls
                                     loop
                                     poster="tbh/fv.png"
@@ -165,7 +165,7 @@ function Home(){
                             </div>
                             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                                 <video
-                                    className="w-full h-64 object-cover"
+                                    className="w-full h-120 object-cover"
                                     controls
                                     loop
                                     poster="tbh/inst1.png"
@@ -175,7 +175,7 @@ function Home(){
                             </div>
                             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                                 <video
-                                    className="w-full h-64 object-cover"
+                                    className="w-full h-120 object-cover"
                                     controls
                                     loop
                                     poster="tbh/inst2.png"
@@ -199,7 +199,7 @@ function Home(){
                                     <img
                                         src="images/pastor2.jpg"
                                         alt="Bishop John Ayisi"
-                                        className="w-64 h-64 rounded-full object-cover object-center mx-auto shadow-lg"
+                                        className="w-120 h-120 rounded-full object-cover object-center mx-auto shadow-lg"
                                     />
                                 </div>
                                 <div className="mt-6">
@@ -287,7 +287,7 @@ function Home(){
                                         <img
                                             src={src}
                                             alt={`Gallery image ${index + 1}`}
-                                            className="w-full h-48 sm:h-56 md:h-64 object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                                            className="w-full h-48 sm:h-56 md:h-120 object-cover object-center transition-transform duration-300 group-hover:scale-105"
                                         />
                                         <div className="absolute inset-0  bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
                                             <i className="fas fa-expand text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
