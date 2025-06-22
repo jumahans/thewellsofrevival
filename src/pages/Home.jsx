@@ -128,7 +128,7 @@ function Home(){
                     </div>
 
                     {/* Navigation Arrows */}
-                    <button 
+                    {/* <button 
                         onClick={() => setCurrentImageIndex(
                             currentImageIndex === 0 ? heroImages.length - 1 : currentImageIndex - 1
                         )}
@@ -143,7 +143,7 @@ function Home(){
                         className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20  bg-opacity-30 hover:bg-opacity-50 text-white p-3 rounded-full transition-all"
                     >
                         <i className="fas fa-chevron-right"></i>
-                    </button>
+                    </button> */}
                 </section>
 
                 {/* Video Grid Section */}
