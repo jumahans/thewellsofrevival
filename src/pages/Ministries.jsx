@@ -18,19 +18,27 @@ function Ministries(){
             <main>
                 {/* Hero Section */}
                 <section className="relative min-h-screen flex items-center justify-center overflow-hidden shadow-[0_20px_20px_-10px_rgba(0,0,0,0.5)]">
-                <div className="absolute inset-0 z-0">
-                    <img src="images/raising.jpg" alt="Church" className="w-full h-full object-cover" />
-                    <div className="absolute inset-0 bg-opacity-50"></div>
-                </div>
+                <div
+                    className="absolute inset-0 z-0"
+                    style={{
+                    backgroundImage:
+                        "linear-gradient(rgba(44, 62, 80, 0.5), rgba(52, 73, 94, 0.5)), url('images/raising.jpg')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                    }}
+                ></div>
+
                 <div className="relative z-10 container mx-auto px-4 text-center">
-                    <h1 className="text-4xl md:text-6xl font-bold mb-6 text-blue-500 animate-fade-in">
+                    <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white animate-fade-in">
                     Raising Eagles Youth Ministry
                     </h1>
-                    <p className="text-xl md:text-2xl text-blue-500 animate-fade-in">
+                    <p className="text-xl md:text-2xl text-white animate-fade-in">
                     Empowering the next generation to soar on wings like eagles
                     </p>
                 </div>
                 </section>
+
 
 
                 {/* About Raising Eagles Section */}

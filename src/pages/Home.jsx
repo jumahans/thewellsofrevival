@@ -68,83 +68,66 @@ function Home(){
             <Header />
             <main>
                 <section className="relative min-h-screen flex items-center justify-center overflow-hidden shadow-[0_20px_20px_-10px_rgba(0,0,0,0.5)]">
-                    {/* Debug Info - Remove this after testing */}
-                    <div className="absolute top-4 left-4 z-30 bg-black bg-opacity-75 text-white p-2 rounded text-sm">
-                        <div>Current: {currentImageIndex + 1}/{heroImages.length}</div>
-                        <div>Image: {heroImages[currentImageIndex]}</div>
-                        <div>Status: {imageLoadStatus[heroImages[currentImageIndex]] || 'loading...'}</div>
-                    </div>
+                {/* Debug Info - Remove this after testing */}
+                <div className="absolute top-4 left-4 z-30 bg-black bg-opacity-75 text-white p-2 rounded text-sm">
+                    <div>Current: {currentImageIndex + 1}/{heroImages.length}</div>
+                    <div>Image: {heroImages[currentImageIndex]}</div>
+                    <div>Status: {imageLoadStatus[heroImages[currentImageIndex]] || 'loading...'}</div>
+                </div>
 
-                    {/* Image Slideshow Background */}
-                    <div className="absolute inset-0 z-0">
-                        {heroImages.map((image, index) => (
-                            <div
-                                key={index}
-                                className={`absolute inset-0 transition-opacity duration-1000 ${
-                                    index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-                                }`}
-                            >
-                                <img 
-                                    src={image}
-                                    alt={`Church ${index + 1}`}
-                                    className="w-full h-full object-cover object-center"
-                                    onLoad={() => handleImageLoad(image)}
-                                    onError={() => handleImageError(image)}
-                                />
-                            </div>
-                        ))}
-                        <div className="absolute inset- bg-opacity-40"></div>
-                    </div>
-
-                    {/* Slideshow Navigation Dots */}
-                    <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-                        <div className="flex space-x-2">
-                            {heroImages.map((_, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => setCurrentImageIndex(index)}
-                                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                                        index === currentImageIndex
-                                            ? 'bg-white scale-125'
-                                            : 'bg-white bg-opacity-50 hover:bg-opacity-75'
-                                    }`}
-                                />
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Hero Content */}
-                    <div className="relative z-10 container mx-auto px-4">
-                        <div className="text-center text-white">
-                            <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in text-gray-100">
-                                Welcome to Wells of Revival
-                            </h1>
-                            <div className="text-xl md:text-2xl animate-pulse">
-                                <p className="italic">
-                                    " Raising eagles in the Kingdom, Men and Women of character and integrity "
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Navigation Arrows */}
-                    {/* <button 
-                        onClick={() => setCurrentImageIndex(
-                            currentImageIndex === 0 ? heroImages.length - 1 : currentImageIndex - 1
-                        )}
-                        className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-black bg-opacity-30 hover:bg-opacity-50 text-white p-3 rounded-full transition-all"
+                {/* Image Slideshow Background */}
+                <div className="absolute inset-0 z-0">
+                    {heroImages.map((image, index) => (
+                    <div
+                        key={index}
+                        className={`absolute inset-0 transition-opacity duration-1000 ${
+                        index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                        }`}
                     >
-                        <i className="fas fa-chevron-left"></i>
-                    </button>
-                    <button 
-                        onClick={() => setCurrentImageIndex(
-                            (currentImageIndex + 1) % heroImages.length
-                        )}
-                        className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20  bg-opacity-30 hover:bg-opacity-50 text-white p-3 rounded-full transition-all"
-                    >
-                        <i className="fas fa-chevron-right"></i>
-                    </button> */}
+                        <img 
+                        src={image}
+                        alt={`Church ${index + 1}`}
+                        className="w-full h-full object-cover object-center"
+                        onLoad={() => handleImageLoad(image)}
+                        onError={() => handleImageError(image)}
+                        />
+                    </div>
+                    ))}
+                    <div className="absolute inset-0 bg-gradient-to-b from-[rgba(44,62,80,0.6)] to-[rgba(52,73,94,0.6)] z-10"></div>
+                </div>
+
+                {/* Slideshow Navigation Dots */}
+                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+                    <div className="flex space-x-2">
+                    {heroImages.map((_, index) => (
+                        <button
+                        key={index}
+                        onClick={() => setCurrentImageIndex(index)}
+                        className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                            index === currentImageIndex
+                            ? 'bg-white scale-125'
+                            : 'bg-white bg-opacity-50 hover:bg-opacity-75'
+                        }`}
+                        />
+                    ))}
+                    </div>
+                </div>
+
+                {/* Hero Content */}
+                <div className="relative z-10 container mx-auto px-4">
+                    <div className="text-center text-white">
+                    <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in text-gray-100">
+                        Welcome to Wells of Revival
+                    </h1>
+                    <div className="text-xl md:text-2xl animate-pulse">
+                        <p className="italic">
+                        " Raising eagles in the Kingdom, Men and Women of character and integrity "
+                        </p>
+                    </div>
+                    </div>
+                </div>
                 </section>
+
 
                 
 

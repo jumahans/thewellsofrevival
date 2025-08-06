@@ -9,18 +9,25 @@ function Events(){
             <main>
                 {/* Hero Section */}
                 <section className="relative min-h-screen flex items-center justify-center overflow-hidden shadow-[0_20px_20px_-10px_rgba(0,0,0,0.5)]">
-                    <div className="absolute inset-0 z-0">
-                        <img src="images/events.webp" alt="Church" className="w-full h-full object-cover" />
-                        <div className="absolute inset-0 bg-opacity-50"></div>
-                    </div>
-                    <div className="relative z-10 container mx-auto px-4 text-center">
-                        <h1 className="text-4xl md:text-6xl font-bold mb-6 text-grey animate-fade-in">
-                            Upcoming Events
-                        </h1>
-                        <p className="text-xl md:text-2xl text-grey animate-fade-in">
-                            Join us for life-changing experiences
-                        </p>
-                    </div>
+                <div
+                    className="absolute inset-0 z-0"
+                    style={{
+                    backgroundImage:
+                        "linear-gradient(rgba(44, 62, 80, 0.5), rgba(52, 73, 94, 0.5)), url('images/events.webp')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                    }}
+                ></div>
+
+                <div className="relative z-10 container mx-auto px-4 text-center">
+                    <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white animate-fade-in">
+                    Upcoming Events
+                    </h1>
+                    <p className="text-xl md:text-2xl text-white animate-fade-in">
+                    Join us for life-changing experiences
+                    </p>
+                </div>
                 </section>
 
                 {/* Featured Event Section */}

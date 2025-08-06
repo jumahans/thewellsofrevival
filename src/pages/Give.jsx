@@ -12,23 +12,30 @@ function Give(){
             <main>
                 {/* Hero Section */}
                 <section className="relative min-h-screen flex items-center justify-center overflow-hidden shadow-[0_20px_20px_-10px_rgba(0,0,0,0.5)]">
-                    <div className="absolute inset-0 z-0">
-                        <img src="images/give.jpeg" alt="Church" className="w-full h-full object-cover" />
-                        <div className="absolute inset-0  bg-opacity-50"></div>
+                <div
+                    className="absolute inset-0 z-0"
+                    style={{
+                    backgroundImage:
+                        "linear-gradient(rgba(44, 62, 80, 0.5), rgba(52, 73, 94, 0.5)), url('images/give.jpeg')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                    }}
+                ></div>
+
+                <div className="relative z-10 container mx-auto px-4 text-center">
+                    <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white animate-fade-in">
+                    Giving
+                    </h1>
+                    <p className="text-xl md:text-2xl text-white mb-8 animate-fade-in">
+                    Supporting the Kingdom of God
+                    </p>
+                    <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6 max-w-4xl mx-auto animate-fade-in">
+                    <p className="text-black text-lg italic">
+                        "Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver." — 2 Corinthians 9:7
+                    </p>
                     </div>
-                    <div className="relative z-10 container mx-auto px-4 text-center">
-                        <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white animate-fade-in">
-                            Giving
-                        </h1>
-                        <p className="text-xl md:text-2xl text-white mb-8 animate-fade-in">
-                            Supporting the Kingdom of God
-                        </p>
-                        <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6 max-w-4xl mx-auto animate-fade-in">
-                            <p className="text-grey text-lg italic">
-                                "Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver." - 2 Corinthians 9:7
-                            </p>
-                        </div>
-                    </div>
+                </div>
                 </section>
 
                 {/* Why Give Section */}
