@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Header from "../Header";
 import Footer from "../Footer";
 
+import { motion, AnimatePresence } from "framer-motion";
+
 function Home(){
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [imageLoadStatus, setImageLoadStatus] = useState({});
@@ -256,55 +258,125 @@ function Home(){
                 </section>
 
                 {/* Church Gallery Section */}
-                <section className="py-16 bg-white">
+
+                {/* === NEW FLIPBOOK-STYLE GALLERY === */}
+                <section className="py-20 bg-gray-100"> {/* Changed from bg-white to bg-gray-100 */}
                     <div className="container mx-auto px-4">
-                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">
-                            Our Church Gallery
+                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-800">
+                        Our Church Gallery
                         </h2>
-                        <div className="relative">
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                                {galleryImages.map((src, index) => (
-                                    <div 
-                                        key={index} 
-                                        className="relative group cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300"
-                                        onClick={() => openGalleryModal(src)}
-                                    >
-                                        <img
-                                            src={src}
-                                            alt={`Gallery image ${index + 1}`}
-                                            className="w-full h-48 sm:h-56 md:h-120 object-cover object-center transition-transform duration-300 group-hover:scale-105"
-                                        />
-                                        <div className="absolute inset-0  bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                                            <i className="fas fa-expand text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
+
+                        {/* Photo Stack – NOW VISIBLE IMMEDIATELY */}
+                        <div className="relative h-[600px] md:h-[800px] max-w-7xl mx-auto overflow-visible bg-gradient-to-br from-blue-50 via-transparent to-pink-50 rounded-3xl"> {/* Added visible background */}
+                        <div className="absolute inset-0 flex items-center justify-center perspective-[1500px]">
+                            {galleryImages.map((src, i) => {
+                            const rot = -5 + Math.random() * 10;
+                            const tx = -60 + Math.random() * 120;
+                            const ty = -40 + Math.random() * 80;
+
+                            return (
+                                <motion.div
+                                key={src + i}
+                                className="absolute cursor-pointer select-none"
+                                style={{ zIndex: galleryImages.length - i }}
+                                initial={{ opacity: 0, scale: 0.8, y: 100 }}
+                                animate={{
+                                    opacity: 1,
+                                    x: tx,
+                                    y: i * 14 + ty,
+                                    rotate: rot,
+                                    scale: 1 - i * 0.045,
+                                }}
+                                transition={{ delay: i * 0.09, duration: 0.9, ease: "easeOut" }}
+                                whileHover={{
+                                    scale: 1.15,
+                                    y: ty - 70,
+                                    rotate: rot * 1.7,
+                                    zIndex: 999,
+                                    transition: { duration: 0.35 }
+                                }}
+                                onClick={() => setSelectedGalleryImage(i)}
+                                >
+                                <div className="bg-white p-5 md:p-7 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow border border-gray-200">
+                                    <img
+                                    src={src}
+                                    alt={`Gallery ${i + 1}`}
+                                    className="w-64 h-64 md:w-80 md:h-80 object-cover rounded-xl pointer-events-none shadow-md"
+                                    draggable={false}
+                                    loading="eager" // This forces images to load immediately
+                                    />
+                                </div>
+                                </motion.div>
+                            );
+                            })}
+                        </div>
                         </div>
                     </div>
                 </section>
 
-                {/* Gallery Modal */}
-                {selectedGalleryImage && (
-                    <div 
-                        className="fixed inset-0  bg-opacity-90 z-50 flex items-center justify-center p-4"
-                        onClick={handleModalBackdropClick}
+                {/* === FULLSCREEN FLIPBOOK MODAL (No external deps) === */}
+                <AnimatePresence>
+                {selectedGalleryImage !== null && (
+                    <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
+                    onClick={() => setSelectedGalleryImage(null)}
                     >
-                        <div className="relative max-w-4xl max-h-full">
-                            <button
-                                onClick={closeGalleryModal}
-                                className="absolute -top-12 right-0 text-white text-2xl hover:text-gray-300 transition-colors z-10"
-                            >
-                                <i className="fas fa-times"></i>
-                            </button>
-                            <img
-                                src={selectedGalleryImage}
-                                alt="Gallery preview"
-                                className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
-                            />
-                        </div>
+                    {/* Close Button */}
+                    <button
+                        onClick={() => setSelectedGalleryImage(null)}
+                        className="absolute top-5 right-5 text-white text-5xl hover:text-gray-400 z-10"
+                    >
+                        ×
+                    </button>
+
+                    {/* Prev/Next Arrows */}
+                    <button
+                        onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedGalleryImage((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+                        }}
+                        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white text-6xl hover:text-gray-300 z-10"
+                    >
+                        ‹
+                    </button>
+                    <button
+                        onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedGalleryImage((prev) => (prev + 1) % galleryImages.length);
+                        }}
+                        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white text-6xl hover:text-gray-300 z-10"
+                    >
+                        ›
+                    </button>
+
+                    {/* Page Flip Animation */}
+                    <div className="w-full h-full flex items-center justify-center">
+                        <AnimatePresence mode="wait" initial={false}>
+                        <motion.img
+                            key={selectedGalleryImage}
+                            src={galleryImages[selectedGalleryImage]}
+                            alt="Full view"
+                            initial={{ rotateY: 65, opacity: 0 }}
+                            animate={{ rotateY: 0, opacity: 1 }}
+                            exit={{ rotateY: -65, opacity: 0 }}
+                            transition={{ type: "spring", stiffness: 80, damping: 25 }}
+                            className="max-w-full max-h-[90vh] object-contain rounded-xl shadow-4xl"
+                            onClick={(e) => e.stopPropagation()}
+                            draggable={false}
+                        />
+                        </AnimatePresence>
                     </div>
+
+                    {/* Counter */}
+                    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-black/70 text-white px-6 py-3 rounded-full text-lg">
+                        {selectedGalleryImage + 1} / {galleryImages.length}
+                    </div>
+                    </motion.div>
                 )}
+                </AnimatePresence>
 
                 {/* Location Map Section */}
                 <section className="py-16 bg-gray-50">
